@@ -8,5 +8,5 @@ Sticky note Todo list
 Classes:
     Todo: id, title, desc, priority
     TodoDAO: getTodos, addTodo, removeTodo
-    TodoListFrame
+    TodoFrame
     Card: jpanel, offset, 
