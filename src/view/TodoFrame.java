@@ -1,9 +1,11 @@
+package view;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class TodoFrame extends JFrame {
 
-    private JPanel panel;
+    private final JPanel panel;
 
     public TodoFrame(String title) {
         super(title);
@@ -14,13 +16,13 @@ public class TodoFrame extends JFrame {
         panel.setLayout(null);
         panel.setSize(this.getWidth(), this.getHeight());
 
-        JButton addTodoButton = new JButton("Add Todo");
+        JButton addTodoButton = new JButton("Add model.Todo");
         addTodoButton.setBounds(this.getWidth() - 200, 10, 100, 50);
         addTodoButton.setFocusable(false);
 
         float columnWidth = (float) this.getWidth() / 3;
 
-        JLabel todoLabel = new JLabel("Todo");
+        JLabel todoLabel = new JLabel("model.Todo");
         todoLabel.setFont(new Font("Verdana",Font.BOLD,24));
         todoLabel.setBounds((int) (columnWidth - 50) / 2, 100, 100, 50);
         JLabel doingLabel = new JLabel("Working");

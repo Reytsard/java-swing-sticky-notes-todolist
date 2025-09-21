@@ -1,3 +1,5 @@
+package model;
+
 public class Todo {
     String todoTitle;
     String todoDesc;

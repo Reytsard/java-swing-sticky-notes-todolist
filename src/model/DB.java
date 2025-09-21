@@ -1,3 +1,5 @@
+package model;
+
 import java.sql.*;
 
 public class DB {
@@ -11,7 +13,7 @@ public class DB {
 
     private void initializeDB() {
         if (conn != null) {
-            String query = "Create table if not exists Todo (" +
+            String query = "Create table if not exists model.Todo (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "title TEXT NOT NULL," +
                     "description Text," +
@@ -51,7 +53,7 @@ public class DB {
 
     public void getAllTodo() throws SQLException {
         Statement stmt = conn.createStatement();
-        String query = "SELECT * FROM Todo";
+        String query = "SELECT * FROM model.Todo";
         ResultSet results = stmt.executeQuery(query);
 
         while (results.next()) {
