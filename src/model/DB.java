@@ -14,7 +14,7 @@ public class DB {
 
     private void initializeDB() {
         if (conn != null) {
-            String query = "Create table if not exists model.Todo (" +
+            String query = "Create table if not exists Todo (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "title TEXT NOT NULL," +
                     "description Text," +
@@ -33,7 +33,7 @@ public class DB {
     }
 
     public void insertTodo(Todo todo) throws SQLException {
-        String query = "INSERT INTO TODO(title, description, priority, status) VALUES (?,?,?,?);";
+        String query = "INSERT INTO Todo(title, description, priority, status) VALUES (?,?,?,?);";
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, todo.getTodoTitle());
         ps.setString(2, todo.getTodoDesc());
@@ -44,7 +44,7 @@ public class DB {
     }
 
     public void updateTodo(Todo todo) throws SQLException {
-        String query = "UPDATE TODO set status=? where id=?;";
+        String query = "UPDATE Todo set status=? where id=?;";
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, todo.getStatus());
         ps.setInt(2, todo.getId());
@@ -52,11 +52,11 @@ public class DB {
         ps.executeUpdate();
     }
 
-    public ArrayList<Todo> getAllTodo() {
-        ArrayList<Todo> list = new ArrayList<>();
-        try {
+    public ArrayList<Todo> getAllTodo() throws SQLException {
+        if(conn != null){
+            ArrayList<Todo> list = new ArrayList<>();
             Statement stmt = conn.createStatement();
-            String query = "SELECT * FROM model.Todo";
+            String query = "SELECT * FROM Todo";
             ResultSet results = stmt.executeQuery(query);
 
             while (results.next()) {
@@ -67,14 +67,12 @@ public class DB {
                 String status = results.getString(5);
 
                 list.add(new Todo(id, title, desc, prio, status));
-                System.out.printf("%d, %s, %s, %s, %s\n", id, title, desc, prio, status);
             }
 
             return list;
-
-        } catch (SQLException e) {
-            System.out.println("Error fetching todos");
+        }else{
+            System.out.println("Error fetching data");
+            return new ArrayList<>();
         }
-        return list;
     }
 }

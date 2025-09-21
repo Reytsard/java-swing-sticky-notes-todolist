@@ -1,13 +1,18 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ToDoDAO {
+    ArrayList<Todo> todos = new ArrayList<>();
     DB db;
-    ArrayList<Todo> todos;
-
     public ToDoDAO() {
-        todos = db.getAllTodo();
+        try {
+            db = new DB();
+            todos = db.getAllTodo();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void addTodo(Todo todo) {
@@ -26,6 +31,6 @@ public class ToDoDAO {
     }
 
     public ArrayList<Todo> getTodos() {
-        return db.getAllTodo();
+        return todos;
     }
 }

@@ -25,7 +25,7 @@ public class TodoFrame extends JFrame {
 
         float columnWidth = (float) this.getWidth() / 3;
 
-        JLabel todoLabel = new JLabel("todo");
+        JLabel todoLabel = new JLabel("Todo");
         todoLabel.setFont(new Font("Verdana",Font.BOLD,24));
         todoLabel.setBounds((int) (columnWidth - 50) / 2, 100, 100, 50);
         JLabel doingLabel = new JLabel("Working");
@@ -51,9 +51,12 @@ public class TodoFrame extends JFrame {
     }
 
     public void addCards(ArrayList<Todo> list){
+        System.out.println(list.size());
         for (Todo todo : list){
             Card card = new Card(todo);
-            add(card);
+            panel.add(card);
         }
+        panel.revalidate();
+        panel.repaint();
     }
 }
