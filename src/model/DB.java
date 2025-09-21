@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DB {
     final String dbURL = "jdbc:sqlite:todo.db";
@@ -51,19 +52,29 @@ public class DB {
         ps.executeUpdate();
     }
 
-    public void getAllTodo() throws SQLException {
-        Statement stmt = conn.createStatement();
-        String query = "SELECT * FROM model.Todo";
-        ResultSet results = stmt.executeQuery(query);
+    public ArrayList<Todo> getAllTodo() {
+        ArrayList<Todo> list = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            String query = "SELECT * FROM model.Todo";
+            ResultSet results = stmt.executeQuery(query);
 
-        while (results.next()) {
-            int id = results.getInt(1);
-            String title = results.getString(2);
-            String desc = results.getString(3);
-            PRIORITY prio = PRIORITY.valueOf(results.getString(4));
-            String status = results.getString(5);
+            while (results.next()) {
+                int id = results.getInt(1);
+                String title = results.getString(2);
+                String desc = results.getString(3);
+                PRIORITY prio = PRIORITY.valueOf(results.getString(4));
+                String status = results.getString(5);
 
-            System.out.printf("%d, %s, %s, %s, %s\n", id, title, desc, prio, status);
+                list.add(new Todo(id, title, desc, prio, status));
+                System.out.printf("%d, %s, %s, %s, %s\n", id, title, desc, prio, status);
+            }
+
+            return list;
+
+        } catch (SQLException e) {
+            System.out.println("Error fetching todos");
         }
+        return list;
     }
 }

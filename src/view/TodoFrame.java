@@ -1,7 +1,10 @@
 package view;
 
+import model.Todo;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class TodoFrame extends JFrame {
 
@@ -16,13 +19,13 @@ public class TodoFrame extends JFrame {
         panel.setLayout(null);
         panel.setSize(this.getWidth(), this.getHeight());
 
-        JButton addTodoButton = new JButton("Add model.Todo");
+        JButton addTodoButton = new JButton("Add todo");
         addTodoButton.setBounds(this.getWidth() - 200, 10, 100, 50);
         addTodoButton.setFocusable(false);
 
         float columnWidth = (float) this.getWidth() / 3;
 
-        JLabel todoLabel = new JLabel("model.Todo");
+        JLabel todoLabel = new JLabel("todo");
         todoLabel.setFont(new Font("Verdana",Font.BOLD,24));
         todoLabel.setBounds((int) (columnWidth - 50) / 2, 100, 100, 50);
         JLabel doingLabel = new JLabel("Working");
@@ -45,5 +48,12 @@ public class TodoFrame extends JFrame {
 
     public JPanel getPanel() {
         return panel;
+    }
+
+    public void addCards(ArrayList<Todo> list){
+        for (Todo todo : list){
+            Card card = new Card(todo);
+            add(card);
+        }
     }
 }

@@ -25,6 +25,14 @@ public class Todo {
         status = "todo";
     }
 
+    public Todo(int id, String todoTitle, String todoDesc, PRIORITY priority, String status){
+        this.id = id;
+        this.todoTitle = todoTitle;
+        this.todoDesc = todoDesc;
+        this.priority = priority;
+        this.status = status;
+    }
+
 
     public PRIORITY getPriority() {
         return priority;

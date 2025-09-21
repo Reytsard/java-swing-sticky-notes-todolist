@@ -9,4 +9,4 @@ Classes:
     model.Todo: id, title, desc, priority
     TodoDAO: getTodos, addTodo, removeTodo
     view.TodoFrame
-    model.Card: jpanel, offset, 
+    view.Card: jpanel, offset, 

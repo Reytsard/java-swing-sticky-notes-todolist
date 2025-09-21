@@ -1,3 +1,4 @@
+import controller.TodoController;
 import view.TodoFrame;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -15,6 +16,6 @@ public class Main {
     }
 
     private void run() throws Exception {
-        new TodoFrame("model.Todo List");
+        new TodoController();
     }
 }

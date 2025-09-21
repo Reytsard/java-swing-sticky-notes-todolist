@@ -3,12 +3,11 @@ package model;
 import java.util.ArrayList;
 
 public class ToDoDAO {
+    DB db;
     ArrayList<Todo> todos;
 
     public ToDoDAO() {
-        todos = new ArrayList<>();
-
-//        initializeTodos
+        todos = db.getAllTodo();
     }
 
     public void addTodo(Todo todo) {
@@ -24,5 +23,9 @@ public class ToDoDAO {
         }
 
         return false;
+    }
+
+    public ArrayList<Todo> getTodos() {
+        return db.getAllTodo();
     }
 }
